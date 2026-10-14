@@ -1,12 +1,5 @@
-/**
- * Paris region shell — placeholder.
- * Full implementation in Phase 8.
- */
+import RegionalHome from '../shared/RegionalHome';
+
 export default function ParisShell() {
-  return (
-    <div data-region="paris">
-      <h1>Amen · Paris</h1>
-      <p>Region shell — wired in Phase 8</p>
-    </div>
-  );
+  return <RegionalHome regionId="paris" />;
 }

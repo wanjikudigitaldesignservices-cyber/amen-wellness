@@ -33,45 +33,8 @@ const ParisShell = lazy(() =>
   })),
 );
 
-/* ── Region gate placeholder ──────────────────────────────────────── */
-function RegionGate() {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        minHeight: '100vh',
-        fontFamily: 'Inter, sans-serif',
-      }}
-    >
-      <div style={{ textAlign: 'center' }}>
-        <h1 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '3rem' }}>
-          AMEN
-        </h1>
-        <p style={{ letterSpacing: '0.25em', fontSize: '0.75rem', opacity: 0.7 }}>
-          WELLNESS CENTRE
-        </p>
-        <p style={{ margin: '2rem 0', opacity: 0.6 }}>
-          Choose your region · Choisissez votre région
-        </p>
-        <nav style={{ display: 'flex', gap: '1rem', justifyContent: 'center' }}>
-          <a href="/nairobi">Nairobi</a>
-          <a href="/new-york">New York</a>
-          <a href="/paris">Paris</a>
-        </nav>
-        <div style={{ marginTop: '2rem' }}>
-          <a
-            href="/admin/login"
-            style={{ fontSize: '0.8rem', color: '#2E4A3F', textDecoration: 'underline' }}
-          >
-            Staff Portal
-          </a>
-        </div>
-      </div>
-    </div>
-  );
-}
+/* ── Region Gate Component ────────────────────────────────────────── */
+const RegionGate = lazy(() => import('./components/gate/RegionGate'));
 
 /* ── Region route guard ───────────────────────────────────────────── */
 function RegionRoute() {

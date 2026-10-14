@@ -1,12 +1,5 @@
-/**
- * New York region shell — placeholder.
- * Full implementation in Phase 8.
- */
+import RegionalHome from '../shared/RegionalHome';
+
 export default function NewYorkShell() {
-  return (
-    <div data-region="new-york">
-      <h1>Amen · New York</h1>
-      <p>Region shell — wired in Phase 8</p>
-    </div>
-  );
+  return <RegionalHome regionId="new-york" />;
 }
