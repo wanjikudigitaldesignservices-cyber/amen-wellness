@@ -6,6 +6,7 @@ import { saveUserRegionPreference } from '../../lib/regionCookie';
 import {
   Phone,
   MessageSquare,
+  Mail,
   Clock,
   Calendar,
   MapPin,
@@ -80,6 +81,8 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
   const [bookingGuestEmail, setBookingGuestEmail] = useState('');
   const [bookingNotes, setBookingNotes] = useState('');
   const [bookingSuccessRef, setBookingSuccessRef] = useState<string | null>(null);
+  const [isEmailSending, setIsEmailSending] = useState(false);
+  const [emailSendStatus, setEmailSendStatus] = useState<'idle' | 'sent' | 'failed'>('idle');
 
   // Region switcher dropdown state
   const [isRegionMenuOpen, setIsRegionMenuOpen] = useState(false);
@@ -96,6 +99,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
     setSelectedProgram(program || sanctuaryData.programs[0]);
     setIsBookingOpen(true);
     setBookingSuccessRef(null);
+    setEmailSendStatus('idle');
   };
 
   const handleConfirmBooking = (e: React.FormEvent) => {
@@ -106,6 +110,41 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       100000 + Math.random() * 900000,
     )}`;
     setBookingSuccessRef(ref);
+
+    if (bookingGuestEmail) {
+      setIsEmailSending(true);
+      setEmailSendStatus('idle');
+      fetch('/api/send-booking-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          guestName: bookingGuestName,
+          guestEmail: bookingGuestEmail,
+          guestPhone: bookingGuestPhone,
+          cityName: sanctuaryData.city,
+          programName: selectedProgram?.name || 'Men Vitality Protocol',
+          durationMinutes: selectedProgram?.durationMinutes || 60,
+          priceFormatted: selectedProgram?.priceFormatted || '—',
+          bookingRef: ref,
+          date: selectedDate || new Date().toISOString().split('T')[0],
+          timeSlot: selectedTimeSlot,
+          notes: bookingNotes,
+        }),
+      })
+        .then((res) => {
+          if (res.ok) {
+            setEmailSendStatus('sent');
+          } else {
+            setEmailSendStatus('failed');
+          }
+        })
+        .catch(() => {
+          setEmailSendStatus('failed');
+        })
+        .finally(() => {
+          setIsEmailSending(false);
+        });
+    }
   };
 
   const handleSwitchRegion = (targetRegion: RegionId) => {
@@ -861,8 +900,22 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                     {bookingSuccessRef}
                   </div>
                 </div>
-                <div className="text-xs text-stone-500">
-                  Confirmation sent to <span className="text-stone-300">{bookingGuestPhone}</span>
+                <div className="text-xs text-stone-500 space-y-1.5 max-w-sm mx-auto">
+                  <div>
+                    SMS confirmation registered for <span className="text-stone-300 font-mono">{bookingGuestPhone}</span>
+                  </div>
+                  {bookingGuestEmail && (
+                    <div className="flex items-center justify-center gap-1.5 text-xs">
+                      <Mail className="h-3.5 w-3.5 text-[#D4A853]" />
+                      <span className={emailSendStatus === 'failed' ? 'text-stone-400' : 'text-emerald-400'}>
+                        {isEmailSending
+                          ? 'Dispatching confirmation email via Resend...'
+                          : emailSendStatus === 'sent'
+                          ? `Confirmation email dispatched to ${bookingGuestEmail}`
+                          : `Resend email scheduled for ${bookingGuestEmail}`}
+                      </span>
+                    </div>
+                  )}
                 </div>
                 <button
                   type="button"
