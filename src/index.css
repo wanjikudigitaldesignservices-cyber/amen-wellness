@@ -1,0 +1,94 @@
+/* ── Brand Fonts ─────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+
+/*
+ * ── Amen Wellness Centre — Global Styles ────────────────────────────
+ * Tailwind base + brand foundation. Regional themes applied via
+ * data-region attribute in Phase 7.
+ */
+
+/* ── Master Palette (CSS custom properties) ──────────────────────── */
+:root {
+  --color-deep-sage: #2e4a3f;
+  --color-sand: #eadfcb;
+  --color-ivory: #faf7f0;
+  --color-charcoal: #222222;
+
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+
+  --radius-soft: 16px;
+  --transition-gentle: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Base Reset ──────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-ivory);
+  color: var(--color-charcoal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-deep-sage);
+  text-decoration: none;
+  transition: opacity var(--transition-gentle);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Focus visible (accessibility) ───────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-deep-sage);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
