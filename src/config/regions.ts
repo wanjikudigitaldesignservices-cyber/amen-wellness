@@ -7,6 +7,7 @@
  */
 
 export type RegionSlug = 'nairobi' | 'new-york' | 'paris';
+export type RegionId = RegionSlug;
 
 export interface RegionTax {
   /** Tax display name (VAT, Sales tax, TVA) */

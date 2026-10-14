@@ -1,0 +1,156 @@
+import type { AuthUser } from '../../types/auth';
+
+export interface SeedUserEntry {
+  user: AuthUser;
+  passwordHash: string; // Plaintext for demo/mock auth test runner
+  mfaSecret: string;
+  isDemo: true;
+}
+
+export const SEED_USERS: SeedUserEntry[] = [
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000001',
+      email: 'superadmin@amenwellness.com',
+      role: 'super_admin',
+      regionIds: ['nairobi', 'new-york', 'paris'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Elena',
+      lastName: 'Vance',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenSuperAdmin2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP', // Mock TOTP secret
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000002',
+      email: 'nairobi.admin@amenwellness.com',
+      role: 'region_admin',
+      regionIds: ['nairobi'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Amani',
+      lastName: 'Kamau',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenNairobi2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000003',
+      email: 'newyork.admin@amenwellness.com',
+      role: 'region_admin',
+      regionIds: ['new-york'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Marcus',
+      lastName: 'Sterling',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenNewYork2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000004',
+      email: 'paris.admin@amenwellness.com',
+      role: 'region_admin',
+      regionIds: ['paris'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Claire',
+      lastName: 'Dubois',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenParis2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000005',
+      email: 'reception.nairobi@amenwellness.com',
+      role: 'receptionist',
+      regionIds: ['nairobi'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Faith',
+      lastName: 'Mwangi',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenStaff2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000006',
+      email: 'therapist.paris@amenwellness.com',
+      role: 'therapist',
+      regionIds: ['paris'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Julien',
+      lastName: 'Moreau',
+      assignedTherapistId: '30000000-0000-0000-0000-000000000001',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenTherapist2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '00000000-0000-0000-0000-000000000007',
+      email: 'editor@amenwellness.com',
+      role: 'content_editor',
+      regionIds: ['nairobi', 'new-york', 'paris'],
+      mfaEnabled: true,
+      mfaVerified: false,
+      firstName: 'Sophie',
+      lastName: 'Leroy',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'AmenEditor2026!',
+    mfaSecret: 'JBSWY3DPEHPK3PXP',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '10000000-0000-0000-0000-000000000001',
+      email: 'customer.nairobi@example.com',
+      role: 'customer',
+      regionIds: ['nairobi'],
+      mfaEnabled: false,
+      mfaVerified: false,
+      firstName: 'Grace',
+      lastName: 'Wanjiku',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'CustomerPass2026!',
+    mfaSecret: '',
+    isDemo: true,
+  },
+  {
+    user: {
+      id: '10000000-0000-0000-0000-000000000002',
+      email: 'customer.paris@example.com',
+      role: 'customer',
+      regionIds: ['paris'],
+      mfaEnabled: false,
+      mfaVerified: false,
+      firstName: 'Camille',
+      lastName: 'Laurent',
+      createdAt: '2026-01-01T00:00:00Z',
+    },
+    passwordHash: 'CustomerPass2026!',
+    mfaSecret: '',
+    isDemo: true,
+  },
+];
