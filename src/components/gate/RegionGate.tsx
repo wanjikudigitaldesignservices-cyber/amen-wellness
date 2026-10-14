@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { REGIONS, type RegionId } from '../../config/regions';
 import { MEN_SANCTUARY_DATA } from '../../config/menWellnessData';
 import { saveUserRegionPreference, detectBrowserRegion } from '../../lib/regionCookie';
-import { Clock, ArrowRight, ShieldCheck, Sparkles, MapPin } from 'lucide-react';
+import { Clock, ArrowRight, ShieldCheck, Sparkles, MapPin, Globe } from 'lucide-react';
 
 export default function RegionGate() {
   const navigate = useNavigate();
@@ -15,35 +15,15 @@ export default function RegionGate() {
     paris: '',
   });
 
-  // Live clocks per region
   useEffect(() => {
     const updateClocks = () => {
       const now = new Date();
       setCurrentTimes({
-        nairobi: now.toLocaleTimeString('en-US', {
-          timeZone: 'Africa/Nairobi',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }),
-        'new-york': now.toLocaleTimeString('en-US', {
-          timeZone: 'America/New_York',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }),
-        paris: now.toLocaleTimeString('fr-FR', {
-          timeZone: 'Europe/Paris',
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: false,
-        }),
+        nairobi: now.toLocaleTimeString('en-US', { timeZone: 'Africa/Nairobi', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
+        'new-york': now.toLocaleTimeString('en-US', { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
+        paris: now.toLocaleTimeString('fr-FR', { timeZone: 'Europe/Paris', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }),
       });
     };
-
     updateClocks();
     const interval = setInterval(updateClocks, 1000);
     return () => clearInterval(interval);
@@ -57,72 +37,50 @@ export default function RegionGate() {
   const regionKeys: RegionId[] = ['nairobi', 'new-york', 'paris'];
 
   return (
-    <div className="relative min-h-screen w-full bg-[#1A2621] text-[#FAF7F0] flex flex-col font-sans overflow-x-hidden selection:bg-[#B5573A] selection:text-white">
-      {/* Top Header Bar */}
-      <header className="relative z-20 w-full px-6 py-6 border-b border-white/10 bg-[#1A2621]/90 backdrop-blur-md">
+    <div className="relative min-h-screen w-full bg-[#0E1612] text-[#FAF7F0] flex flex-col font-sans overflow-x-hidden">
+      {/* ── Header ── */}
+      <header className="relative z-20 w-full px-6 py-5 border-b border-white/[0.06] bg-[#0E1612]/90 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          {/* Logo & Arch Sanctuary Mark */}
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-[#2E4A3F] border border-white/20 flex items-center justify-center text-[#EADFCB] shadow-inner">
-              <svg
-                className="h-6 w-6"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path
-                  d="M4 21V11a8 8 0 1 1 16 0v10"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12 13a4 4 0 0 1 4 4v4H8v-4a4 4 0 0 1 4-4Z"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+            <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#2E4A3F] to-[#1A2A23] border border-white/10 flex items-center justify-center text-[#EADFCB] shadow-lg">
+              <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M4 21V11a8 8 0 1 1 16 0v10" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M12 13a4 4 0 0 1 4 4v4H8v-4a4 4 0 0 1 4-4Z" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
             <div>
               <div className="flex items-baseline gap-2">
-                <h1 className="font-serif text-2xl tracking-[0.15em] font-medium text-[#FAF7F0]">
-                  AMEN
-                </h1>
-                <span className="text-[10px] font-semibold tracking-[0.25em] text-[#EADFCB] uppercase">
-                  Men’s Wellness
-                </span>
+                <h1 className="font-serif text-xl tracking-[0.2em] font-semibold text-[#FAF7F0]">AMEN</h1>
+                <span className="text-[9px] font-bold tracking-[0.25em] text-[#B5573A] uppercase">Men's Wellness</span>
               </div>
-              <p className="text-[11px] text-[#FAF7F0]/60 tracking-wider">
-                Sanctuaire Masculin de Haute Récupération
+              <p className="text-[10px] text-[#FAF7F0]/40 tracking-wider">
+                High-Performance Men's Recovery
               </p>
             </div>
           </div>
 
-          {/* Bilingual Region Prompt */}
           <div className="text-center">
-            <span className="text-xs uppercase tracking-[0.2em] text-[#EADFCB] font-medium">
-              Choose your region · Choisissez votre région
-            </span>
-            <div className="flex items-center justify-center gap-1.5 text-[11px] text-white/50 mt-0.5">
-              <ShieldCheck className="h-3 w-3 text-emerald-400" />
-              <span>Three global branches · Complete physical & mental restoration</span>
+            <div className="badge-gold">
+              <Globe className="h-3 w-3" />
+              <span>Choose Your Region</span>
+            </div>
+            <div className="flex items-center justify-center gap-1.5 text-[10px] text-white/30 mt-1.5">
+              <ShieldCheck className="h-3 w-3 text-emerald-400/60" />
+              <span>Three global sanctuaries · Complete physical & mental restoration</span>
             </div>
           </div>
 
-          {/* Staff Access Link */}
-          <div>
-            <a
-              href="/admin/login"
-              className="text-xs text-[#EADFCB]/80 hover:text-white transition tracking-wider border-b border-white/20 pb-0.5"
-            >
-              Staff Portal →
-            </a>
-          </div>
+          <a
+            href="/admin/login"
+            className="text-[11px] text-stone-600 hover:text-stone-300 transition tracking-wider"
+          >
+            Staff Portal →
+          </a>
         </div>
       </header>
 
-      {/* Main 3-Panel Split Area */}
-      <main className="relative flex-1 flex flex-col md:flex-row w-full h-full min-h-[calc(100vh-140px)]">
+      {/* ── 3-Panel Region Selector ── */}
+      <main className="relative flex-1 flex flex-col md:flex-row w-full h-full min-h-[calc(100vh-130px)]">
         {regionKeys.map((regId) => {
           const cfg = REGIONS[regId];
           const data = MEN_SANCTUARY_DATA[regId];
@@ -135,83 +93,81 @@ export default function RegionGate() {
               onMouseEnter={() => setActiveHover(regId)}
               onMouseLeave={() => setActiveHover(null)}
               onClick={() => handleSelectRegion(regId)}
-              className={`group relative flex-1 min-h-[460px] md:min-h-full cursor-pointer overflow-hidden border-b md:border-b-0 md:border-r border-white/10 transition-all duration-700 ease-out ${
-                isHovered ? 'md:flex-[1.4]' : 'md:flex-1'
+              className={`group relative flex-1 min-h-[420px] md:min-h-full cursor-pointer overflow-hidden transition-all duration-700 ease-out ${
+                isHovered ? 'md:flex-[1.5]' : 'md:flex-1'
               }`}
             >
-              {/* Background Photography with Luxury Vignette */}
+              {/* Background */}
               <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-105"
-                style={{
-                  backgroundImage: `url(${data.heroImage})`,
-                }}
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 ease-out group-hover:scale-110"
+                style={{ backgroundImage: `url(${data.heroImage})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0E1612] via-[#0E1612]/75 to-[#0E1612]/40 group-hover:via-[#0E1612]/60 transition-colors duration-500" />
+              {/* Multi-layer gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0F0D] via-[#0A0F0D]/70 to-[#0A0F0D]/30 group-hover:via-[#0A0F0D]/55 transition-colors duration-500" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
 
-              {/* Panel Content Overlay */}
+              {/* Subtle separator line between panels */}
+              <div className="absolute inset-y-0 right-0 w-px bg-white/[0.04] hidden md:block" />
+
+              {/* Content */}
               <div className="relative h-full flex flex-col justify-between p-8 sm:p-10 z-10">
-                {/* Top of Card: Suggested Badge + Live Local Clock */}
+                {/* Top */}
                 <div className="flex items-center justify-between gap-2">
                   {isSuggested ? (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#B5573A] px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-white shadow-lg animate-pulse">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-[#B5573A] px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white shadow-lg"
+                          style={{ boxShadow: '0 4px 20px rgba(181,87,58,0.35)' }}>
                       <Sparkles className="h-3 w-3" />
-                      <span>Suggested for you</span>
+                      <span>Suggested</span>
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 backdrop-blur-md px-3 py-1 text-[11px] font-medium tracking-wider text-[#EADFCB]">
-                      <MapPin className="h-3 w-3 text-[#EADFCB]" />
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/[0.06] backdrop-blur-sm px-3 py-1.5 text-[10px] font-medium tracking-wider text-[#EADFCB]/70 border border-white/[0.06]">
+                      <MapPin className="h-3 w-3" />
                       <span>{data.country}</span>
                     </span>
                   )}
 
-                  {/* Running Local Time */}
-                  <div className="flex items-center gap-1.5 rounded-full bg-black/40 backdrop-blur-md px-3 py-1 text-xs font-mono text-[#EADFCB] border border-white/10">
-                    <Clock className="h-3.5 w-3.5 text-[#EADFCB]" />
-                    <span>{currentTimes[regId] || '--:--:--'}</span>
-                    <span className="text-[10px] text-white/50 uppercase ml-1">
-                      {cfg.tz.split('/')[1]?.replace('_', ' ')}
-                    </span>
+                  <div className="flex items-center gap-1.5 rounded-full bg-black/30 backdrop-blur-sm px-3 py-1.5 text-[11px] font-mono text-[#D4A853]/80 border border-white/[0.06]">
+                    <Clock className="h-3 w-3" />
+                    <span className="tabular-nums">{currentTimes[regId] || '--:--:--'}</span>
                   </div>
                 </div>
 
-                {/* Bottom of Card: Sanctuary Info & Entry CTA */}
-                <div className="space-y-4 pt-12">
+                {/* Bottom */}
+                <div className="space-y-5 pt-12">
                   <div>
-                    <span className="text-xs uppercase font-semibold tracking-[0.25em] text-[#EADFCB]">
+                    <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-[#D4A853]/60">
                       Amen Wellness
                     </span>
-                    <h2 className="font-serif text-4xl sm:text-5xl font-medium tracking-wide text-[#FAF7F0] mt-1 group-hover:text-white transition">
+                    <h2 className="font-serif text-4xl sm:text-5xl font-medium text-white mt-1 group-hover:text-[#EADFCB] transition-colors duration-300">
                       {data.city}
                     </h2>
-                    <p className="text-sm text-gray-300 mt-2 line-clamp-2 leading-relaxed">
+                    <p className="text-sm text-stone-400 mt-2 line-clamp-2 leading-relaxed group-hover:text-stone-300 transition-colors">
                       {data.tagline}
                     </p>
                   </div>
 
-                  {/* Highlights Pill */}
-                  <div className="flex flex-wrap gap-2 text-[11px] text-[#EADFCB]/80 font-medium pt-1">
-                    <span className="rounded-md bg-white/10 backdrop-blur-sm px-2.5 py-1">
-                      {cfg.currency} Pricing
-                    </span>
-                    <span className="rounded-md bg-white/10 backdrop-blur-sm px-2.5 py-1">
-                      {data.programs.length} Specialized Protocols
-                    </span>
-                    <span className="rounded-md bg-white/10 backdrop-blur-sm px-2.5 py-1">
-                      {cfg.gateway === 'intasend' ? 'M-Pesa Express' : 'Stripe & Apple Pay'}
-                    </span>
+                  {/* Detail Pills */}
+                  <div className="flex flex-wrap gap-2 text-[10px] font-medium">
+                    {[
+                      `${cfg.currency} Pricing`,
+                      `${data.programs.length} Protocols`,
+                      cfg.gateway === 'intasend' ? 'M-Pesa' : 'Stripe',
+                    ].map((pill) => (
+                      <span key={pill} className="rounded-md bg-white/[0.06] backdrop-blur-sm px-2.5 py-1.5 text-stone-400 border border-white/[0.04]">
+                        {pill}
+                      </span>
+                    ))}
                   </div>
 
                   {/* Enter Button */}
-                  <div className="pt-2">
-                    <Link
-                      to={`/${regId}`}
-                      onClick={() => handleSelectRegion(regId)}
-                      className="w-full flex items-center justify-between rounded-xl bg-[#FAF7F0] px-5 py-3.5 text-sm font-semibold tracking-wider text-[#1A2621] shadow-xl transition-all duration-300 group-hover:bg-[#EADFCB] group-hover:translate-y-[-2px]"
-                    >
-                      <span>Enter Amen {data.city}</span>
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </Link>
-                  </div>
+                  <Link
+                    to={`/${regId}`}
+                    onClick={() => handleSelectRegion(regId)}
+                    className="btn-luxury-primary w-full flex items-center justify-between !py-3.5 !px-6 !text-sm group/btn"
+                  >
+                    <span>Enter Amen {data.city}</span>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -219,15 +175,17 @@ export default function RegionGate() {
         })}
       </main>
 
-      {/* Footer Info */}
-      <footer className="relative z-20 py-4 px-6 border-t border-white/10 bg-[#121B17] text-center text-xs text-white/50 flex flex-col sm:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
-        <p>© 2026 Amen Wellness Centre. All rights reserved. High-Performance Men’s Recovery.</p>
-        <div className="flex items-center gap-4 text-[#EADFCB]/80">
-          <span>Nairobi · Karen</span>
-          <span>•</span>
-          <span>New York · SoHo</span>
-          <span>•</span>
-          <span>Paris · Saint-Germain</span>
+      {/* ── Footer ── */}
+      <footer className="relative z-20 py-4 px-6 border-t border-white/[0.04] bg-[#080C0A] text-center text-[11px] text-stone-600">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p>© 2026 Amen Men's Wellness Centre</p>
+          <div className="flex items-center gap-4 text-stone-500">
+            <span>Nairobi · Karen</span>
+            <span className="text-white/10">•</span>
+            <span>New York · SoHo</span>
+            <span className="text-white/10">•</span>
+            <span>Paris · Saint-Germain</span>
+          </div>
         </div>
       </footer>
     </div>
