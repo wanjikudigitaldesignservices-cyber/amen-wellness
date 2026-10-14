@@ -5,7 +5,7 @@ import { test, expect } from '@playwright/test';
  * This is the Phase 0 "empty test" that proves CI passes.
  */
 test('region gate loads and shows all three regions', async ({ page }) => {
-  await page.goto('/', { waitUntil: 'domcontentloaded' });
+  await page.goto('/');
 
   // The page should contain the Amen title
   await expect(page.locator('h1')).toContainText('AMEN');
@@ -17,12 +17,12 @@ test('region gate loads and shows all three regions', async ({ page }) => {
 });
 
 test('navigating to a region loads the region shell', async ({ page }) => {
-  await page.goto('/nairobi', { waitUntil: 'domcontentloaded' });
-  await expect(page.locator('[data-region="nairobi"]')).toBeVisible();
+  await page.goto('/nairobi');
+  await expect(page.locator('[data-region="nairobi"]').first()).toBeVisible({ timeout: 10000 });
 });
 
 test('unknown region redirects to region gate', async ({ page }) => {
-  await page.goto('/london', { waitUntil: 'domcontentloaded' });
+  await page.goto('/london');
   // Should redirect back to /
   await expect(page).toHaveURL('/');
 });

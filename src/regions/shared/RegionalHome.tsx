@@ -93,24 +93,24 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       className="min-h-screen bg-[#101714] text-[#FAF7F0] font-sans selection:bg-[#B5573A] selection:text-white"
     >
       {/* ── TOP UTILITY NOTIFICATION BAR ── */}
-      <div className="w-full bg-[#0B100E] border-b border-white/5 py-2 px-4 text-xs text-stone-300">
+      <div className="w-full bg-[#0B100E] border-b border-white/10 py-2.5 px-6 text-xs text-stone-200">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1.5 text-emerald-400 font-medium">
+            <span className="flex items-center gap-2 text-emerald-400 font-medium">
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
               <span>{sanctuaryData.city} Sanctuary Open</span>
             </span>
             <span className="text-white/20">|</span>
-            <span className="flex items-center gap-1 text-stone-400">
+            <span className="flex items-center gap-1.5 text-stone-300">
               <Clock className="h-3.5 w-3.5 text-[#EADFCB]" />
-              <span className="font-mono text-stone-200">{localTime || '--:--:--'}</span>
+              <span className="font-mono text-white font-medium">{localTime || '--:--:--'}</span>
               <span className="text-[10px] text-stone-400 uppercase">
                 ({regionConfig.tz.split('/')[1]?.replace('_', ' ')})
               </span>
             </span>
           </div>
 
-          <div className="flex items-center gap-4 text-xs">
+          <div className="flex items-center gap-5 text-xs">
             {/* Direct hotline display */}
             <a
               href={`tel:${sanctuaryData.hotline.replace(/\s+/g, '')}`}
@@ -127,7 +127,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               href={`https://wa.me/${sanctuaryData.whatsapp.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noreferrer"
-              className="hidden sm:flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition"
+              className="hidden sm:flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition font-medium"
             >
               <MessageSquare className="h-3 w-3" />
               <span>WhatsApp Concierge</span>
@@ -137,7 +137,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
 
             <Link
               to={`/${regionId}/account/login`}
-              className="text-stone-400 hover:text-stone-200 transition"
+              className="text-stone-300 hover:text-white transition"
             >
               Member Sign In
             </Link>
@@ -152,8 +152,8 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </div>
 
       {/* ── PRIMARY LUXURY HEADER ── */}
-      <header className="sticky top-0 z-40 w-full bg-[#101714]/90 backdrop-blur-md border-b border-white/10 transition-all">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <header className="sticky top-0 z-40 w-full bg-[#101714]/95 backdrop-blur-md border-b border-white/10 transition-all">
+        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between gap-4">
           {/* Logo & City Identity */}
           <div className="flex items-center gap-3">
             <Link to={`/${regionId}`} className="flex items-center gap-3 group">
@@ -195,20 +195,20 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8 text-sm tracking-wide text-stone-300 font-medium">
-            <a href="#programs" className="hover:text-white transition">
+          <nav className="hidden lg:flex items-center gap-7 text-sm tracking-wide text-[#FAF7F0]/85 font-medium">
+            <a href="#programs" className="hover:text-white transition-colors duration-150 py-1">
               Programs & Activities
             </a>
-            <a href="#transformations" className="hover:text-white transition">
+            <a href="#transformations" className="hover:text-white transition-colors duration-150 py-1">
               Before & After Progress
             </a>
-            <a href="#team" className="hover:text-white transition">
+            <a href="#team" className="hover:text-white transition-colors duration-150 py-1">
               Our Clinical Team
             </a>
-            <a href="#premises" className="hover:text-white transition">
+            <a href="#premises" className="hover:text-white transition-colors duration-150 py-1">
               Sanctuary Premises
             </a>
-            <a href="#contact" className="hover:text-white transition">
+            <a href="#contact" className="hover:text-white transition-colors duration-150 py-1">
               Hotline & Location
             </a>
           </nav>
@@ -220,17 +220,17 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               <button
                 type="button"
                 onClick={() => setIsRegionMenuOpen(!isRegionMenuOpen)}
-                className="flex items-center gap-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/15 px-3 py-2 text-xs font-medium text-stone-200 transition"
+                className="flex items-center gap-1.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 px-3.5 py-2 text-xs font-medium text-white transition shadow-sm"
               >
                 <Globe className="h-3.5 w-3.5 text-[#EADFCB]" />
-                <span className="uppercase">{regionId}</span>
-                <span className="text-stone-400">({regionConfig.currency})</span>
+                <span className="uppercase font-semibold">{regionId}</span>
+                <span className="text-stone-300">({regionConfig.currency})</span>
               </button>
 
               {/* Dropdown Menu */}
               {isRegionMenuOpen && (
-                <div className="absolute right-0 mt-2 w-64 rounded-xl bg-[#1A2621] border border-white/20 shadow-2xl p-2 z-50">
-                  <div className="px-3 py-2 text-[11px] font-semibold tracking-wider text-stone-400 uppercase border-b border-white/10">
+                <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-[#1A2621] border border-white/25 shadow-2xl p-2 z-50">
+                  <div className="px-3 py-2 text-[11px] font-semibold tracking-wider text-stone-300 uppercase border-b border-white/10">
                     Switch Men’s Sanctuary
                   </div>
                   {(['nairobi', 'new-york', 'paris'] as RegionId[]).map((rId) => {
@@ -242,15 +242,15 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                         key={rId}
                         type="button"
                         onClick={() => handleSwitchRegion(rId)}
-                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs transition ${
+                        className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs transition ${
                           isCurrent
                             ? 'bg-[#2E4A3F] text-white font-semibold'
-                            : 'text-stone-300 hover:bg-white/10 hover:text-white'
+                            : 'text-stone-200 hover:bg-white/10 hover:text-white'
                         }`}
                       >
                         <div className="text-left">
-                          <div className="font-serif text-sm tracking-wide">{rData.city}</div>
-                          <div className="text-[10px] text-stone-400">{rData.country}</div>
+                          <div className="font-serif text-sm tracking-wide text-white">{rData.city}</div>
+                          <div className="text-[10px] text-stone-300">{rData.country}</div>
                         </div>
                         <span className="rounded bg-black/40 px-2 py-0.5 font-mono text-[10px] text-[#EADFCB]">
                           {rCfg.currency}
@@ -274,7 +274,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
             <button
               type="button"
               onClick={() => handleOpenBooking()}
-              className="rounded-xl bg-[#FAF7F0] px-4 py-2 text-xs font-semibold tracking-wider text-[#101714] shadow-lg hover:bg-[#EADFCB] transition flex items-center gap-1.5"
+              className="rounded-xl bg-[#FAF7F0] hover:bg-[#EADFCB] px-5 py-2.5 text-xs font-semibold tracking-wider text-[#101714] shadow-lg transition-all flex items-center gap-1.5"
             >
               <Calendar className="h-3.5 w-3.5 text-[#B5573A]" />
               <span className="hidden sm:inline">Book Protocol</span>
@@ -285,43 +285,43 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </header>
 
       {/* ── HERO BANNER: BESPOKE REGIONAL PHOTOGRAPHY & IDENTITY ── */}
-      <section className="relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden py-24 px-6">
         {/* Region's exclusive hero photography on disk */}
         <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 scale-105"
           style={{ backgroundImage: `url(${sanctuaryData.heroImage})` }}
         />
         {/* Layered luxury dark vignette */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#101714] via-[#101714]/80 to-[#101714]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#101714] via-[#101714]/85 to-[#101714]/50" />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center flex flex-col items-center">
+        <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center">
           {/* Tagline Pill */}
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 text-xs font-semibold tracking-[0.2em] text-[#EADFCB] uppercase shadow-lg mb-6">
+          <div className="inline-flex items-center gap-2 rounded-full bg-black/60 backdrop-blur-md border border-[#EADFCB]/30 px-5 py-2 text-xs font-semibold tracking-[0.25em] text-[#EADFCB] uppercase shadow-xl mb-6">
             <Sparkles className="h-3.5 w-3.5 text-[#B5573A]" />
             <span>Amen {sanctuaryData.city} · {sanctuaryData.tagline}</span>
           </div>
 
           {/* Regional Headline */}
-          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FAF7F0] leading-[1.1] max-w-4xl">
+          <h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl font-normal tracking-tight text-[#FAF7F0] leading-[1.12] max-w-4xl drop-shadow-md">
             {sanctuaryData.headline}
           </h1>
 
           {/* Regional Subheadline */}
-          <p className="mt-6 text-base sm:text-xl text-stone-300 font-light max-w-2xl leading-relaxed">
+          <p className="mt-6 text-base sm:text-xl text-stone-200 font-light max-w-2xl leading-relaxed drop-shadow">
             {sanctuaryData.heroSubheadline}
           </p>
 
           {/* Key Regional Highlights Bar */}
-          <div className="mt-8 flex flex-wrap justify-center gap-3 text-xs text-stone-200">
-            <span className="rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-3.5 py-1.5 flex items-center gap-1.5">
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-xs text-stone-100">
+            <span className="rounded-full bg-[#101714]/80 backdrop-blur-md border border-white/20 px-4 py-2 flex items-center gap-2 shadow-md">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
               <span>Exclusively for Men</span>
             </span>
-            <span className="rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-3.5 py-1.5 flex items-center gap-1.5">
+            <span className="rounded-full bg-[#101714]/80 backdrop-blur-md border border-white/20 px-4 py-2 flex items-center gap-2 shadow-md">
               <Activity className="h-3.5 w-3.5 text-[#EADFCB]" />
               <span>{sanctuaryData.programs.length} Dedicated Protocols</span>
             </span>
-            <span className="rounded-full bg-black/40 backdrop-blur-md border border-white/15 px-3.5 py-1.5 flex items-center gap-1.5">
+            <span className="rounded-full bg-[#101714]/80 backdrop-blur-md border border-white/20 px-4 py-2 flex items-center gap-2 shadow-md">
               <Phone className="h-3.5 w-3.5 text-[#B5573A]" />
               <span>Direct Concierge: {sanctuaryData.hotline}</span>
             </span>
@@ -332,14 +332,14 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
             <button
               type="button"
               onClick={() => handleOpenBooking()}
-              className="w-full sm:w-auto rounded-xl bg-[#FAF7F0] px-8 py-4 text-sm font-semibold tracking-wider text-[#101714] shadow-2xl hover:bg-[#EADFCB] transition flex items-center justify-center gap-2 group"
+              className="w-full sm:w-auto rounded-xl bg-[#FAF7F0] hover:bg-[#EADFCB] px-8 py-4 text-sm font-semibold tracking-wider text-[#101714] shadow-2xl transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 group"
             >
               <span>Reserve Sanctuary Session</span>
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </button>
             <a
               href="#programs"
-              className="w-full sm:w-auto rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 px-8 py-4 text-sm font-semibold tracking-wider text-white backdrop-blur-md transition flex items-center justify-center gap-2"
+              className="w-full sm:w-auto rounded-xl bg-[#1A2621]/80 hover:bg-[#20332B] border border-white/30 text-[#FAF7F0] hover:text-white px-8 py-4 text-sm font-semibold tracking-wider backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
             >
               <span>View Treatment Menu & Pricing</span>
             </a>
@@ -348,7 +348,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </section>
 
       {/* ── SECTION: REGIONAL PROGRAMS & ACTIVITIES ── */}
-      <section id="programs" className="py-24 px-6 max-w-7xl mx-auto">
+      <section id="programs" className="scroll-mt-24 py-24 px-6 max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 border-b border-white/10 pb-8">
           <div>
             <div className="flex items-center gap-2 text-xs font-semibold tracking-[0.25em] text-[#B5573A] uppercase">
@@ -358,39 +358,39 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
             <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-wide text-[#FAF7F0] mt-2">
               Programs & Activities
             </h2>
-            <p className="text-stone-400 mt-2 max-w-xl text-sm leading-relaxed">
+            <p className="text-stone-300 mt-2 max-w-xl text-sm leading-relaxed">
               Every protocol is clinically formulated for high-performance recovery, neuromuscular
               restoration, and central nervous system decompression.
             </p>
           </div>
           <div className="text-right hidden md:block">
             <span className="text-xs text-stone-400">All prices in</span>
-            <div className="font-mono text-xl font-bold text-[#EADFCB]">{sanctuaryData.currency}</div>
+            <div className="font-mono text-2xl font-bold text-[#EADFCB]">{sanctuaryData.currency}</div>
           </div>
         </div>
 
         {/* 4 Bespoke Activities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {sanctuaryData.programs.map((program) => (
             <div
               key={program.id}
-              className="group rounded-2xl bg-[#16211C] border border-white/10 overflow-hidden shadow-xl hover:border-white/30 transition-all flex flex-col justify-between"
+              className="group rounded-3xl bg-[#141E1A] border border-white/15 overflow-hidden shadow-2xl hover:border-[#EADFCB]/40 transition-all duration-300 flex flex-col justify-between"
             >
               {/* Program Visual Header */}
-              <div className="relative h-60 w-full overflow-hidden">
+              <div className="relative h-64 sm:h-72 w-full overflow-hidden shrink-0">
                 <img
                   src={program.image}
                   alt={program.name}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#16211C] via-[#16211C]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141E1A] via-[#141E1A]/30 to-transparent" />
                 <div className="absolute top-4 left-4 flex gap-2">
-                  <span className="rounded-full bg-[#101714]/80 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#EADFCB] border border-white/15">
+                  <span className="rounded-full bg-[#101714]/85 backdrop-blur-md px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-[#EADFCB] border border-white/20">
                     {program.category}
                   </span>
                 </div>
                 <div className="absolute top-4 right-4">
-                  <span className="rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-mono font-medium text-white border border-white/15 flex items-center gap-1.5">
+                  <span className="rounded-full bg-black/70 backdrop-blur-md px-3.5 py-1 text-xs font-mono font-medium text-white border border-white/20 flex items-center gap-1.5">
                     <Clock className="h-3 w-3 text-[#EADFCB]" />
                     <span>{program.durationMinutes} min</span>
                   </span>
@@ -398,29 +398,27 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               </div>
 
               {/* Card Details */}
-              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-6">
+              <div className="p-6 sm:p-8 pb-8 sm:pb-10 flex-1 flex flex-col justify-between space-y-6">
                 <div>
-                  <div className="flex items-baseline justify-between gap-4">
-                    <h3 className="font-serif text-2xl font-medium text-[#FAF7F0] group-hover:text-white transition">
-                      {program.name}
-                    </h3>
-                  </div>
-                  <div className="text-xs font-medium text-[#B5573A] mt-1 tracking-wide">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#FAF7F0] group-hover:text-white transition">
+                    {program.name}
+                  </h3>
+                  <div className="text-xs font-semibold uppercase tracking-wider text-[#B5573A] mt-1.5">
                     {program.subtitle}
                   </div>
-                  <p className="text-sm text-stone-300 mt-3 leading-relaxed">
+                  <p className="text-sm text-stone-300 mt-3.5 leading-relaxed">
                     {program.description}
                   </p>
 
                   {/* Physiological Benefits Checklist */}
-                  <div className="mt-5 space-y-2 border-t border-white/10 pt-4">
-                    <span className="text-[11px] font-semibold tracking-wider text-stone-400 uppercase">
+                  <div className="mt-6 space-y-2 pt-5 border-t border-white/10">
+                    <span className="text-[11px] font-semibold tracking-wider text-stone-400 uppercase block mb-1">
                       Clinical Benefits:
                     </span>
-                    <ul className="space-y-1.5">
+                    <ul className="space-y-2">
                       {program.benefits.map((b, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-xs text-stone-300">
-                          <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                        <li key={idx} className="flex items-center gap-2.5 text-xs text-stone-200">
+                          <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0" />
                           <span>{b}</span>
                         </li>
                       ))}
@@ -429,21 +427,21 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                 </div>
 
                 {/* Price & Booking Trigger Footer */}
-                <div className="flex items-center justify-between pt-4 border-t border-white/10">
+                <div className="flex items-center justify-between pt-6 border-t border-white/10">
                   <div>
                     <span className="text-[10px] uppercase tracking-wider text-stone-400 block">
                       Session Fee
                     </span>
-                    <span className="font-serif text-2xl font-bold text-[#EADFCB]">
+                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#EADFCB]">
                       {program.priceFormatted}
                     </span>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleOpenBooking(program)}
-                    className="rounded-xl bg-[#FAF7F0] px-5 py-2.5 text-xs font-semibold tracking-wider text-[#101714] hover:bg-[#EADFCB] transition flex items-center gap-1.5 shadow-md"
+                    className="rounded-xl bg-[#FAF7F0] hover:bg-[#EADFCB] px-5 py-3 text-xs font-semibold tracking-wider text-[#101714] transition-all flex items-center gap-1.5 shadow-md hover:scale-[1.02]"
                   >
-                    <span>Reserve Session</span>
+                    <span className="text-[#101714]">Reserve Session</span>
                     <ChevronRight className="h-3.5 w-3.5 text-[#101714]" />
                   </button>
                 </div>
@@ -454,7 +452,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </section>
 
       {/* ── SECTION: BEFORE & AFTER PROGRESS & CLINICAL CASE STUDIES ── */}
-      <section id="transformations" className="py-24 px-6 bg-[#0E1512] border-y border-white/10">
+      <section id="transformations" className="scroll-mt-24 py-24 px-6 bg-[#0B100E] border-y border-white/10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.25em] text-[#B5573A] uppercase mb-2">
@@ -464,7 +462,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
             <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-wide text-[#FAF7F0]">
               Real Recovery. Quantifiable Results.
             </h2>
-            <p className="text-stone-400 mt-3 text-sm sm:text-base leading-relaxed">
+            <p className="text-stone-300 mt-3 text-sm sm:text-base leading-relaxed">
               Every Amen protocol tracks objective bio-markers: spinal alignment plumb lines,
               forward head posture angles, heart rate variability, and muscular tissue elasticity.
             </p>
@@ -472,15 +470,15 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
 
           {/* Clinical Posture Analysis Photography Showcase */}
           <div className="rounded-3xl bg-[#141E1A] border border-white/15 p-6 sm:p-10 shadow-2xl mb-12">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
               {/* Visual Side */}
-              <div className="lg:col-span-7 relative rounded-2xl overflow-hidden border border-white/10 shadow-xl">
+              <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-white/10 shadow-xl flex flex-col justify-between">
                 <img
                   src="/assets/brand/before-after-posture.jpg"
                   alt="Clinical Posture & Spine Alignment Transformation"
-                  className="w-full h-auto object-cover"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute bottom-4 left-4 right-4 bg-black/75 backdrop-blur-md rounded-xl p-3 border border-white/15 flex items-center justify-between text-xs text-stone-200">
+                <div className="bg-black/80 backdrop-blur-md p-4 border-t border-white/15 flex items-center justify-between text-xs text-stone-200">
                   <span className="font-semibold text-[#EADFCB]">
                     Clinical Case #704 · Thoracic Alignment & Decompression
                   </span>
@@ -489,7 +487,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               </div>
 
               {/* Regional Metric Transformations Side */}
-              <div className="lg:col-span-5 space-y-6">
+              <div className="lg:col-span-6 space-y-6 flex flex-col justify-center">
                 <div>
                   <span className="text-xs font-semibold uppercase tracking-widest text-[#B5573A]">
                     {sanctuaryData.city} Branch Case Studies
@@ -499,47 +497,49 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                   </h3>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-5">
                   {sanctuaryData.transformations.map((tCase, idx) => (
                     <div
                       key={idx}
-                      className="rounded-xl bg-[#1A2621] border border-white/10 p-5 space-y-3"
+                      className="rounded-2xl bg-[#182620] border border-white/15 p-6 space-y-3.5 shadow-lg"
                     >
                       <div className="flex items-center justify-between text-xs">
-                        <span className="font-semibold text-white">{tCase.title}</span>
-                        <span className="rounded bg-white/10 px-2 py-0.5 text-[10px] text-stone-300">
+                        <span className="font-semibold text-white text-sm">{tCase.title}</span>
+                        <span className="rounded-md bg-white/10 px-2.5 py-1 text-[11px] text-[#EADFCB] font-mono">
                           {tCase.duration}
                         </span>
                       </div>
-                      <div className="text-[11px] text-stone-400">
-                        Protocol: <span className="text-stone-200">{tCase.protocol}</span>
+                      <div className="text-xs text-stone-300">
+                        Protocol: <span className="text-white font-medium">{tCase.protocol}</span>
                       </div>
-                      <div className="text-[11px] text-stone-400">
+                      <div className="text-xs text-stone-400">
                         Profile: <span className="text-stone-200">{tCase.clientProfile}</span>
                       </div>
 
                       {/* Before vs After Metric Comparison Bar */}
-                      <div className="rounded-lg bg-black/40 border border-white/10 p-3 space-y-2">
-                        <div className="text-[10px] uppercase font-semibold text-stone-400">
+                      <div className="rounded-xl bg-black/50 border border-white/10 p-3.5 space-y-2">
+                        <div className="text-[10px] uppercase font-semibold text-stone-300 tracking-wider">
                           {tCase.metricLabel}
                         </div>
                         <div className="grid grid-cols-2 gap-3 text-xs">
-                          <div className="rounded bg-red-950/40 border border-red-500/20 p-2 text-center">
-                            <span className="text-[9px] uppercase tracking-wider text-red-300 block">
+                          <div className="rounded-lg bg-red-950/40 border border-red-500/30 p-2.5 text-center">
+                            <span className="text-[9px] uppercase tracking-wider text-red-300 block mb-0.5">
                               Baseline Before
                             </span>
                             <span className="font-medium text-red-200">{tCase.metricBefore}</span>
                           </div>
-                          <div className="rounded bg-emerald-950/40 border border-emerald-500/20 p-2 text-center">
-                            <span className="text-[9px] uppercase tracking-wider text-emerald-300 block">
+                          <div className="rounded-lg bg-emerald-950/40 border border-emerald-500/30 p-2.5 text-center">
+                            <span className="text-[9px] uppercase tracking-wider text-emerald-300 block mb-0.5">
                               Outcome After
                             </span>
-                            <span className="font-medium text-emerald-300">{tCase.metricAfter}</span>
+                            <span className="font-semibold text-emerald-300">{tCase.metricAfter}</span>
                           </div>
                         </div>
                       </div>
 
-                      <p className="text-xs text-stone-300 italic">“{tCase.summary}”</p>
+                      <p className="text-xs text-stone-300 italic pt-1 leading-relaxed">
+                        “{tCase.summary}”
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -549,8 +549,8 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
         </div>
       </section>
 
-      {/* ── SECTION: OUR REGIONAL CLINICAL TEAM ── */}
-      <section id="team" className="py-24 px-6 max-w-7xl mx-auto">
+      {/* ── SECTION: OUR REGIONAL CLINICAL TEAM (GENEROUS, UNCLIPPED CARDS) ── */}
+      <section id="team" className="scroll-mt-24 py-24 px-6 max-w-7xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-[0.25em] text-[#B5573A] uppercase mb-2">
             <Award className="h-3.5 w-3.5" />
@@ -559,50 +559,52 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
           <h2 className="font-serif text-3xl sm:text-5xl font-medium tracking-wide text-[#FAF7F0]">
             Our Clinical Specialists
           </h2>
-          <p className="text-stone-400 mt-3 text-sm sm:text-base leading-relaxed">
+          <p className="text-stone-300 mt-3 text-sm sm:text-base leading-relaxed">
             Our teams are permanent specialists based directly at our {sanctuaryData.city} sanctuary.
             Masters in sports physiotherapy, thermal contrast physiology, and neuromuscular bodywork.
           </p>
         </div>
 
-        {/* Team Grid with On-Disk Portraits */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Team Grid with Generous, Unclipped Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
           {sanctuaryData.team.map((member, idx) => (
             <div
               key={idx}
-              className="group rounded-2xl bg-[#16211C] border border-white/10 overflow-hidden shadow-xl hover:border-white/30 transition-all flex flex-col sm:flex-row"
+              className="group rounded-3xl bg-[#141E1A] border border-white/15 overflow-hidden shadow-2xl hover:border-[#EADFCB]/40 transition-all duration-300 flex flex-col justify-between"
             >
               {/* Member Portrait */}
-              <div className="sm:w-1/2 relative min-h-[280px]">
+              <div className="relative h-80 sm:h-96 w-full overflow-hidden bg-black/40">
                 <img
                   src={member.avatar}
                   alt={member.name}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#16211C] via-transparent to-transparent sm:hidden" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#141E1A] via-transparent to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="rounded-full bg-black/70 backdrop-blur-md px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-[#EADFCB] border border-white/20">
+                    {idx === 0 ? 'Clinical Director' : 'Senior Specialist'}
+                  </span>
+                </div>
               </div>
 
               {/* Member Bio & Credentials */}
-              <div className="sm:w-1/2 p-6 sm:p-8 flex flex-col justify-between space-y-4">
+              <div className="p-6 sm:p-8 pb-8 sm:pb-10 flex-1 flex flex-col justify-between space-y-6">
                 <div>
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#B5573A]">
-                    {idx === 0 ? 'Clinical Director' : 'Senior Specialist'}
-                  </span>
-                  <h3 className="font-serif text-2xl font-medium text-[#FAF7F0] mt-1">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-[#FAF7F0]">
                     {member.name}
                   </h3>
-                  <div className="text-xs font-medium text-[#EADFCB] mt-0.5">{member.title}</div>
-                  <div className="text-[11px] text-stone-400 italic mt-1">{member.credentials}</div>
-                  <p className="text-xs text-stone-300 mt-3 leading-relaxed line-clamp-4">
+                  <div className="text-xs font-semibold text-[#EADFCB] mt-1">{member.title}</div>
+                  <div className="text-xs text-stone-400 italic mt-0.5">{member.credentials}</div>
+                  <p className="text-sm text-stone-300 mt-3.5 leading-relaxed">
                     {member.bio}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-white/10">
-                  <div className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider mb-2">
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between gap-2">
+                  <span className="text-[10px] font-semibold text-stone-400 uppercase tracking-wider">
                     Core Specialization:
-                  </div>
-                  <span className="inline-block rounded-md bg-white/10 px-2.5 py-1 text-[11px] text-[#EADFCB] font-medium">
+                  </span>
+                  <span className="rounded-lg bg-white/10 px-3 py-1.5 text-xs text-[#FAF7F0] font-medium border border-white/10">
                     {member.specialty}
                   </span>
                 </div>
@@ -613,7 +615,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </section>
 
       {/* ── SECTION: PREMISES & ATMOSPHERE ── */}
-      <section id="premises" className="py-24 px-6 bg-[#0E1512] border-t border-white/10">
+      <section id="premises" className="scroll-mt-24 py-24 px-6 bg-[#0E1512] border-t border-white/10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Text & Architecture */}
@@ -630,33 +632,33 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               </p>
 
               {/* Operating Info Card */}
-              <div className="rounded-2xl bg-[#16211C] border border-white/10 p-6 space-y-4">
-                <div className="flex items-start gap-3">
+              <div className="rounded-2xl bg-[#141E1A] border border-white/15 p-6 space-y-4 shadow-xl">
+                <div className="flex items-start gap-3.5">
                   <MapPin className="h-5 w-5 text-[#B5573A] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs uppercase font-semibold text-stone-400">Location</span>
-                    <div className="text-sm font-medium text-white">{sanctuaryData.address}</div>
+                    <div className="text-sm font-medium text-white mt-0.5">{sanctuaryData.address}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3.5">
                   <Clock className="h-5 w-5 text-[#EADFCB] shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs uppercase font-semibold text-stone-400">Hours</span>
-                    <div className="text-sm font-medium text-white">{sanctuaryData.hours}</div>
+                    <div className="text-sm font-medium text-white mt-0.5">{sanctuaryData.hours}</div>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
+                <div className="flex items-start gap-3.5">
                   <Phone className="h-5 w-5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
                     <span className="text-xs uppercase font-semibold text-stone-400">
                       Direct Region Hotline
                     </span>
-                    <div className="text-sm font-mono font-medium text-white">
+                    <div className="text-sm font-mono font-medium text-white mt-0.5">
                       <a
                         href={`tel:${sanctuaryData.hotline.replace(/\s+/g, '')}`}
-                        className="hover:underline"
+                        className="text-[#EADFCB] hover:text-white underline underline-offset-2"
                       >
                         {sanctuaryData.hotline}
                       </a>
@@ -668,7 +670,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
 
             {/* Visual Mosaic */}
             <div className="lg:col-span-6 space-y-4">
-              <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl h-80">
+              <div className="rounded-2xl overflow-hidden border border-white/15 shadow-2xl h-80">
                 <img
                   src={sanctuaryData.heroImage}
                   alt={`${sanctuaryData.city} Sanctuary Grounds`}
@@ -676,14 +678,14 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                 />
               </div>
               <div className="grid grid-cols-2 gap-4">
-                <div className="rounded-xl overflow-hidden border border-white/10 h-44">
+                <div className="rounded-xl overflow-hidden border border-white/15 h-48 shadow-lg">
                   <img
                     src={sanctuaryData.treatmentImage}
                     alt={`${sanctuaryData.city} Treatment Suite`}
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="rounded-xl overflow-hidden border border-white/10 h-44">
+                <div className="rounded-xl overflow-hidden border border-white/15 h-48 shadow-lg">
                   <img
                     src={sanctuaryData.teamLeadImage}
                     alt={`${sanctuaryData.city} Lead Specialist`}
@@ -697,8 +699,8 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </section>
 
       {/* ── SECTION: CONTACT & HOTLINE CARD ── */}
-      <section id="contact" className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="rounded-3xl bg-gradient-to-r from-[#182620] via-[#1F332A] to-[#182620] border border-white/15 p-8 sm:p-14 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+      <section id="contact" className="scroll-mt-24 py-20 px-6 max-w-7xl mx-auto">
+        <div className="rounded-3xl bg-gradient-to-r from-[#14201A] via-[#1C2C24] to-[#14201A] border border-white/20 p-8 sm:p-14 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
           <div>
             <span className="text-xs uppercase tracking-[0.25em] text-[#EADFCB] font-semibold">
               Instant Reservations & Private Inquiries
@@ -706,7 +708,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
             <h2 className="font-serif text-3xl sm:text-4xl font-medium text-white mt-1">
               Connect With Amen {sanctuaryData.city}
             </h2>
-            <p className="text-stone-300 text-sm mt-2 max-w-xl">
+            <p className="text-stone-300 text-sm mt-2 max-w-xl leading-relaxed">
               Speak directly with our front-desk concierge or clinical intake coordinator. Same-day
               recovery sessions subject to availability.
             </p>
@@ -715,17 +717,17 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
           <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
             <a
               href={`tel:${sanctuaryData.hotline.replace(/\s+/g, '')}`}
-              className="w-full sm:w-auto rounded-xl bg-[#FAF7F0] px-6 py-4 text-xs font-semibold tracking-wider text-[#101714] shadow-xl hover:bg-[#EADFCB] transition flex items-center justify-center gap-2"
+              className="w-full sm:w-auto rounded-xl bg-[#FAF7F0] hover:bg-[#EADFCB] px-7 py-4 text-xs font-semibold tracking-wider text-[#101714] shadow-xl transition flex items-center justify-center gap-2"
             >
               <Phone className="h-4 w-4 text-[#B5573A]" />
-              <span>Call {sanctuaryData.hotline}</span>
+              <span className="text-[#101714] font-bold">Call {sanctuaryData.hotline}</span>
             </a>
 
             <a
               href={`https://wa.me/${sanctuaryData.whatsapp.replace(/[^0-9]/g, '')}`}
               target="_blank"
               rel="noreferrer"
-              className="w-full sm:w-auto rounded-xl bg-emerald-600 hover:bg-emerald-500 px-6 py-4 text-xs font-semibold tracking-wider text-white shadow-xl transition flex items-center justify-center gap-2"
+              className="w-full sm:w-auto rounded-xl bg-emerald-600 hover:bg-emerald-500 px-7 py-4 text-xs font-semibold tracking-wider text-white shadow-xl transition flex items-center justify-center gap-2"
             >
               <MessageSquare className="h-4 w-4" />
               <span>WhatsApp Concierge</span>
@@ -735,7 +737,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="w-full bg-[#0B100E] border-t border-white/10 py-12 px-6 text-stone-400 text-xs">
+      <footer className="w-full bg-[#0B100E] border-t border-white/10 py-12 px-6 text-stone-300 text-xs">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="font-serif text-lg tracking-widest text-[#FAF7F0] font-bold">
@@ -750,7 +752,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               type="button"
               onClick={() => handleSwitchRegion('nairobi')}
               className={`hover:text-white transition ${
-                regionId === 'nairobi' ? 'text-[#EADFCB] font-semibold' : ''
+                regionId === 'nairobi' ? 'text-[#EADFCB] font-bold underline underline-offset-4' : ''
               }`}
             >
               Nairobi Sanctuary
@@ -759,7 +761,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               type="button"
               onClick={() => handleSwitchRegion('new-york')}
               className={`hover:text-white transition ${
-                regionId === 'new-york' ? 'text-[#EADFCB] font-semibold' : ''
+                regionId === 'new-york' ? 'text-[#EADFCB] font-bold underline underline-offset-4' : ''
               }`}
             >
               New York Sanctuary
@@ -768,7 +770,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
               type="button"
               onClick={() => handleSwitchRegion('paris')}
               className={`hover:text-white transition ${
-                regionId === 'paris' ? 'text-[#EADFCB] font-semibold' : ''
+                regionId === 'paris' ? 'text-[#EADFCB] font-bold underline underline-offset-4' : ''
               }`}
             >
               Paris Sanctuary
@@ -780,22 +782,22 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
       </footer>
 
       {/* ── FLOATING QUICK HOTLINE ACTION (BOTTOM RIGHT) ── */}
-      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2">
+      <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         <a
           href={`https://wa.me/${sanctuaryData.whatsapp.replace(/[^0-9]/g, '')}`}
           target="_blank"
           rel="noreferrer"
-          className="h-12 w-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-2xl transition hover:scale-105"
+          className="h-12 w-12 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center shadow-2xl transition hover:scale-110"
           title="WhatsApp Concierge"
         >
           <MessageSquare className="h-5 w-5" />
         </a>
         <a
           href={`tel:${sanctuaryData.hotline.replace(/\s+/g, '')}`}
-          className="rounded-full bg-[#1A2621] hover:bg-[#20332B] border border-white/20 px-4 py-3 text-xs font-medium text-white shadow-2xl backdrop-blur-md flex items-center gap-2 transition hover:scale-105"
+          className="rounded-full bg-[#141E1A]/95 hover:bg-[#1C2A24] border border-white/25 px-4 py-3 text-xs font-semibold text-white shadow-2xl backdrop-blur-md flex items-center gap-2 transition hover:scale-105"
         >
           <Phone className="h-4 w-4 text-[#B5573A]" />
-          <span className="hidden sm:inline">{sanctuaryData.hotline}</span>
+          <span className="hidden sm:inline font-mono">{sanctuaryData.hotline}</span>
         </a>
       </div>
 
@@ -973,7 +975,7 @@ export default function RegionalHome({ regionId }: RegionalHomeProps) {
                 <div className="rounded-xl bg-black/60 border border-white/10 p-4 flex items-center justify-between text-xs">
                   <div>
                     <span className="text-stone-400 block">Total Due Upon Arrival</span>
-                    <span className="text-[10px] text-stone-500">
+                    <span className="text-[10px] text-stone-400">
                       Payment via {regionConfig.gateway === 'intasend' ? 'M-Pesa or Card' : 'Card or Apple Pay'}
                     </span>
                   </div>
